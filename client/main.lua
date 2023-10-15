@@ -122,11 +122,11 @@ local function Init()
         if v.enable then
             if v.showBlip then
                 local blip = AddBlipForCoord(v.coords)
-                SetBlipSprite(blip, 280)
+                SetBlipSprite(blip, v.blip.sprite)
                 SetBlipDisplay(blip, 4)
                 SetBlipScale(blip, 0.7)
                 SetBlipAsShortRange(blip, true)
-                SetBlipColour(blip, 2)
+                SetBlipColour(blip, v.blip.color)
                 BeginTextCommandSetBlipName("STRING")
                 AddTextComponentSubstringPlayerName(v.label)
                 EndTextCommandSetBlipName(blip)
