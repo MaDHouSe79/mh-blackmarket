@@ -1,14 +1,13 @@
+--[[ ===================================================== ]] --
+--[[            MH Blackmarket Script by MaDHouSe          ]] --
+--[[ ===================================================== ]] --
 fx_version 'cerulean'
 game 'gta5'
 
-author 'CrypticOG'
-description 'qb-blackmarket for QBCore Created By CrypticOG'
-version '1.0.0'
+author 'MaDHouSe'
+description 'mh-blackmarket'
+version '1.0'
 
-shared_scripts {
-    'config.lua'
-}
-
-client_scripts {
-	'client/main.lua',
-}
+shared_scripts {'@qb-core/shared/locale.lua', 'locales/en.lua', 'config.lua'}
+client_scripts {'client/main.lua'}
+lua54 'yes'
