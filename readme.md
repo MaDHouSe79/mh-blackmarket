@@ -29,7 +29,8 @@
 - [qb-core](https://github.com/qbcore-framework/qb-core)
 - [qb-target](https://github.com/qbcore-framework/qb-target) 
 - [qb-shops](https://github.com/qbcore-framework/qb-shops)
-
+- [mh-inventory](https://github.com/MaDHouSe79/mh-inventory)
+- [mh-cashasitem](https://github.com/MaDHouSe79/mh-cashasitem)
 
 ## Installation:
 - Create a folder `[mh]` in `resources`. 
