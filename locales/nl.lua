@@ -6,7 +6,7 @@ local Translations = {
         ['no_blackmoney'] = "Je hebt geen zwart geld bij je..",
     },
     target = {
-        ['talk_to'] = "Talk to STEVE-O",
+        ['talk_to'] = "Talk to MaDHouSe",
     }
 }
 
