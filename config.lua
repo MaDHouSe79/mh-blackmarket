@@ -1,6 +1,9 @@
+--[[ ===================================================== ]] --
+--[[            MH Blackmarket Script by MaDHouSe          ]] --
+--[[ ===================================================== ]] --
 Config = {}
 
-Config.MinAmountBlackMoneyIninventory = 1 -- you need atleast 1 blackmoney to use this shop
+Config.MinAmountBlackMoney = 1 -- you need atleast this amount of blackmoney to use this shop.
 
 Config.Items = {
     ['shop'] = {
@@ -92,7 +95,6 @@ Config.Shops = {
         enable = true,
         showBlip = true,
         label = "Blackmarket",
-        ped = "S_M_M_TRUCKER_01", -- if Config.UseCustumPedModel = true then --[[it will ignore this ped model]] end ;).
         senario = "WORLD_HUMAN_STAND_MOBILE",
         coords = vector3(170.73, -993.54, 30.09),
         heading = 76.48,
@@ -103,7 +105,6 @@ Config.Shops = {
         enable = false,
         showBlip = false,
         label = "Blackmarket",
-        ped = "S_M_M_TRUCKER_01", -- if Config.UseCustumPedModel = true then --[[it will ignore this ped model]] end ;).
         senario = "WORLD_HUMAN_STAND_MOBILE",
         coords = vector3(-1470.28, -367.31, 40.11),
         heading = 43,
@@ -114,11 +115,65 @@ Config.Shops = {
         enable = false,
         showBlip = false,
         label = "Blackmarket",
-        ped = "S_M_M_TRUCKER_01", -- if Config.UseCustumPedModel = true then --[[it will ignore this ped model]] end ;).
         senario = "WORLD_HUMAN_STAND_MOBILE",
         coords = vector3(-1470.28, -367.31, 40.11),
         heading = 43,
         slots = 8,
         items = Config.Items['shop'],
     }
+}
+
+Config.Outfit = {
+    ['hair'] = {
+        item = 19,
+        texture = 4
+    }, -- Hear
+    ['beard'] = {
+        item = 2,
+        texture = 0
+    }, -- Beard
+    ["pants"] = {
+        item = 10,
+        texture = 0
+    }, -- Pants
+    ["arms"] = {
+        item = 12,
+        texture = 0
+    }, -- Arms
+    ["t-shirt"] = {
+        item = 21,
+        texture = 0
+    }, -- T Shirt
+    ["vest"] = {
+        item = 0,
+        texture = 0
+    }, -- Body Vest
+    ["torso2"] = {
+        item = 32,
+        texture = 0
+    }, -- Jacket
+    ["shoes"] = {
+        item = 10,
+        texture = 0
+    }, -- Shoes
+    ["decals"] = {
+        item = 0,
+        texture = 0
+    }, -- Neck Accessory
+    ["bag"] = {
+        item = 0,
+        texture = 0
+    }, -- Bag
+    ["hat"] = {
+        item = 0,
+        texture = 0
+    }, -- Hat
+    ["glass"] = {
+        item = 23,
+        texture = 11
+    }, -- Glasses
+    ["mask"] = {
+        item = 0,
+        texture = 0
+    } -- Mask
 }
