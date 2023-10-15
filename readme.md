@@ -30,6 +30,14 @@
 - [qb-target](https://github.com/qbcore-framework/qb-target) 
 - [qb-shops](https://github.com/qbcore-framework/qb-shops)
 
+
+## Installation:
+- Create a folder `[mh]` in `resources`. 
+- Put `mh-blackmarket` in to `resources/[mh]`.
+- in sever.sfg after `ensure [standalone]` add -> `ensure [mh]`
+- After you are done restart the server.
+
+
 # 🙈 Youtube
 - [Youtube](https://www.youtube.com/c/MaDHouSe79)
 
