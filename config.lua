@@ -100,6 +100,10 @@ Config.Shops = {
         heading = 76.48,
         slots = 8,
         items = Config.Items['shop'],
+        blip = {
+            sprite = 280,
+            color = 2
+        },
     },
     [2] = {
         enable = false,
@@ -110,6 +114,10 @@ Config.Shops = {
         heading = 43,
         slots = 8,
         items = Config.Items['shop'],
+        blip = {
+            sprite = 280,
+            color = 2
+        },
     },
     [3] = {
         enable = false,
@@ -120,6 +128,10 @@ Config.Shops = {
         heading = 43,
         slots = 8,
         items = Config.Items['shop'],
+        blip = {
+            sprite = 280,
+            color = 2
+        },
     }
 }
 
