@@ -24,3 +24,15 @@
 
 # mh-blackmarket
 - just an easy blackmarket ;)
+
+# Dependencies:
+- [qb-core](https://github.com/qbcore-framework/qb-core)
+- [qb-target](https://github.com/qbcore-framework/qb-target) 
+- [qb-shops](https://github.com/qbcore-framework/qb-shops)
+
+# 🙈 Youtube
+- [Youtube](https://www.youtube.com/c/MaDHouSe79)
+
+# LICENSE
+[GPL LICENSE](./LICENSE)<br />
+&copy; [MaDHouSe79](https://www.youtube.com/@MaDHouSe79)
