@@ -122,7 +122,7 @@ local function Init()
         if v.enable then
             if v.showBlip then
                 local blip = AddBlipForCoord(v.coords)
-                SetBlipSprite(blip, 469)
+                SetBlipSprite(blip, 280)
                 SetBlipDisplay(blip, 4)
                 SetBlipScale(blip, 0.7)
                 SetBlipAsShortRange(blip, true)
