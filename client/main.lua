@@ -94,7 +94,7 @@ local function CreateShopPed(data)
     FreezeEntityPosition(ped, true)
     SetEntityInvincible(ped, true)
     SetPedKeepTask(ped, true)
-	SetBlockingOfNonTemporaryEvents(ped, true)
+    SetBlockingOfNonTemporaryEvents(ped, true)
     exports['qb-target']:AddTargetEntity(ped, {
         options = {{
             label = Lang:t('target.talk_to'),
