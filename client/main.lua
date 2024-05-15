@@ -100,7 +100,7 @@ local function CreateShopPed(data)
             label = Lang:t('target.talk_to'),
             icon = 'fa-solid fa-stash',
             action = function()
-                local blackmoney = exports['qb-inventory']:HasItem("blackmoney", Config.MinAmountBlackMoney)
+                local blackmoney = exports['qb-inventory']:HasItem("black_money", Config.MinAmountBlackMoney)
                 if blackmoney == false then
                     return QBCore.Functions.Notify(Lang:t('notify.no_blackmoney'))
                 else
