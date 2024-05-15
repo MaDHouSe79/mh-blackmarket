@@ -2,6 +2,7 @@
 --[[            MH Blackmarket Script by MaDHouSe          ]] --
 --[[ ===================================================== ]] --
 local QBCore = exports['qb-core']:GetCoreObject()
+local PlayerData = {}
 local blips = {}
 local peds = {}
 
@@ -100,9 +101,8 @@ local function CreateShopPed(data)
             label = Lang:t('target.talk_to'),
             icon = 'fa-solid fa-stash',
             action = function()
-                local blackmoney = exports['qb-inventory']:HasItem("black_money", Config.MinAmountBlackMoney)
-                if blackmoney == false then
-                    return QBCore.Functions.Notify(Lang:t('notify.no_blackmoney'))
+                if PlayerData.money['black_money'] < Config.MinAmountBlackMoney then
+                    QBCore.Functions.Notify(Lang:t('notify.no_blackmoney'))
                 else
                     TriggerEvent('mh-blackmarket:client:openshop', data.id)
                 end
@@ -146,16 +146,19 @@ local function Init()
 end
 
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+    PlayerData = QBCore.Functions.GetPlayerData()
     Init()
 end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
+    PlayerData = {}
     DeleteBlips()
     DeletePeds()
 end)
 
 AddEventHandler('onResourceStop', function(resource)
     if resource == GetCurrentResourceName() then
+        PlayerData = {}
         DeleteBlips()
         DeletePeds()
     end
@@ -163,6 +166,7 @@ end)
 
 AddEventHandler('onResourceStart', function(resourceName)
     if resourceName == GetCurrentResourceName() then
+        PlayerData = QBCore.Functions.GetPlayerData()
         Init()
     end
 end)
