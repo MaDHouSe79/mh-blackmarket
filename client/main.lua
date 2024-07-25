@@ -172,5 +172,36 @@ AddEventHandler('onResourceStart', function(resourceName)
 end)
 
 RegisterNetEvent("mh-blackmarket:client:openshop", function(shopId)
-    TriggerEvent("qb-inventory:client:openInventory", "shop", "market", Config.Shops[shopId])
+    PlayerData = QBCore.Functions.GetPlayerData()
+    local items = {}
+    local slot = 1
+    for _, item in pairs(Config.Items['shop']) do
+        local itemInfo = QBCore.Shared.Items[item.name:lower()]
+        if itemInfo then
+            items[slot] = {
+                name = itemInfo['name'],
+                amount = tonumber(item.amount),
+                info = item.info or {},
+                label = itemInfo['label'],
+                description = itemInfo['description'] or '',
+                weight = itemInfo['weight'],
+                type = itemInfo['type'],
+                unique = itemInfo['unique'],
+                useable = itemInfo['useable'],
+                price = item.price,
+                image = itemInfo['image'],
+                slot = slot,
+            }
+            slot = slot + 1
+        end
+    end         
+
+    local formattedInventory = {
+        name = 'shop-blackmarket',
+        label = "BlackMarket",
+        maxweight = 5000000,
+        slots = #items,
+        inventory = items
+    }
+    TriggerEvent('qb-inventory:client:openInventory', PlayerData.items, formattedInventory)
 end)
