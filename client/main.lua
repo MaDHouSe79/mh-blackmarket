@@ -172,5 +172,5 @@ AddEventHandler('onResourceStart', function(resourceName)
 end)
 
 RegisterNetEvent("mh-blackmarket:client:openshop", function(shopId)
-    TriggerServerEvent("inventory:server:OpenInventory", "shop", "market", Config.Shops[shopId])
+    TriggerEvent("qb-inventory:client:openInventory", "shop", "market", Config.Shops[shopId])
 end)
