@@ -29,6 +29,7 @@
 - [qb-core](https://github.com/qbcore-framework/qb-core)
 - [qb-target](https://github.com/qbcore-framework/qb-target) 
 - [qb-shops](https://github.com/qbcore-framework/qb-shops)
+- [qb-inventory](https://github.com/qbcore-framework/qb-inventory)
 - [mh-cashasitem](https://github.com/MaDHouSe79/mh-cashasitem)
 
 ## Installation:
