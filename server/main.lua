@@ -45,12 +45,7 @@ RegisterServerEvent('mh-blackmarket:server:openShop', function(shopData)
                     for _, item in pairs(SV_Config.Shops[shopData.id].items) do
                         shopitems[#shopitems + 1] = { name = item.name, amount = item.amount, price = item.price }
                     end
-                    exports['qb-inventory']:CreateShop({
-                        name = 'blackShop-'..shopData.id,
-                        label = SV_Config.Shops[shopData.id].label,
-                        slots = #shopitems,
-                        items = shopitems
-                    })
+                    exports['qb-inventory']:CreateShop({name = 'blackShop-'..shopData.id, label = SV_Config.Shops[shopData.id].label, slots = #shopitems, items = shopitems})
                     exports['qb-inventory']:OpenShop(src, 'blackShop-'..shopData.id)
                 else
                     QBCore.Functions.Notify(src, Lang:t('notify.shop_not_found'))
