@@ -3,25 +3,12 @@
 --[[ ===================================================== ]] --
 local QBCore = exports['qb-core']:GetCoreObject()
 
---- Exploit Ban
----@param src number
----@param reason string
 local function ExploitBan(src)
     local script = GetCurrentResourceName()
     local reason = 'You were permanently banned by the server for: Exploiting'
     MySQL.insert('INSERT INTO bans (name, license, discord, ip, reason, expire, bannedby) VALUES (?, ?, ?, ?, ?, ?, ?)', {GetPlayerName(src), QBCore.Functions.GetIdentifier(src, 'license'), QBCore.Functions.GetIdentifier(src, 'discord'), QBCore.Functions.GetIdentifier(src, 'ip'), reason, 2147483647, script})
     TriggerEvent('qb-log:server:CreateLog', 'bans', 'Player Banned', 'red', string.format('%s was banned by %s for %s', GetPlayerName(src), script, reason), true)
     DropPlayer(src, 'You were permanently banned by the server for: Exploiting')
-end
-
---- is Close By Shop Coords
----@param src number
-local function IsCloseByCoords(src, location)
-    local coords = GetEntityCoords(GetPlayerPed(src))
-    if #(vector3(location.x, location.y, location.z) - vector3(coords.x, coords.y, coords.z)) < 2.0 then
-        return true 
-    end
-    return false
 end
 
 RegisterServerEvent('mh-blackmarket:server:onjoin', function()
