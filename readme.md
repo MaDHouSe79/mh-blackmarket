@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/github/stars/MaDHouSe79/mh-blackmarket?color=white"/> 
   </a>
   <a href="https://github.com/MaDHouSe79/mh-blackmarket/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/MaDHouSe79/mh-blackmarket?color=black"/> 
+    <img src="https://img.shields.io/github/license/MaDHouSe79/mh-blackmarket?color=white"/> 
   </a>      
 </p>
 
