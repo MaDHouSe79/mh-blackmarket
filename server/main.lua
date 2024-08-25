@@ -1,3 +1,6 @@
+--[[ ===================================================== ]] --
+--[[            MH Blackmarket Script by MaDHouSe          ]] --
+--[[ ===================================================== ]] --
 local QBCore = exports['qb-core']:GetCoreObject()
 
 QBCore.Commands.Add('blackmoney', 'Check Blackmoney Balance', {}, false, function(source, _)
