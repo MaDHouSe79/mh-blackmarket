@@ -27,3 +27,10 @@ end
 Citizen.CreateThread( function()
     PerformHttpRequest("https://raw.githubusercontent.com".."/MaDHouSe79/"..script.."/master/version", checkVersion, "GET")
 end)
+
+
+QBCore.Commands.Add('blackmoney', 'Check Blackmoney Balance', {}, false, function(source, _)
+    local Player = QBCore.Functions.GetPlayer(source)
+    local amount = Player.PlayerData.money.black_money
+    TriggerClientEvent('hud:client:ShowAccounts', source, 'black_money', amount)
+end)
