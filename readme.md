@@ -32,19 +32,17 @@
 - [qb-inventory](https://github.com/qbcore-framework/qb-inventory)
 - [mh-cashasitem](https://github.com/MaDHouSe79/mh-cashasitem)
 
-## Installation:
-- Create a folder `[mh]` in `resources`. 
-- Put `mh-blackmarket` in to `resources/[mh]`.
-- in sever.sfg after `ensure [standalone]` add -> `ensure [mh]`
-- After you are done restart the server.
+## Install:
+- Step 1: Create a folder `[mh]` in `resources`. 
+- Step 2: Put `mh-blackmarket` in to `resources/[mh]`.
+- Step 3: Add in sever.cfg after `ensure [standalone]` add -> `ensure [mh]`
+- Step 4: Restart the server.
 
-
-# Note for using blackmoney
-- first you need to edit the qb-core/config.lua to this below
-- add black_money to this tables
+# NOTE FOR Blackmoney in qb-core
+- You need to edit `qb-core/config.lua` to this below and add `black_money` to this tables.
 ```lua
-QBConfig.Money.MoneyTypes = { cash = 500, bank = 5000, crypto = 0, black_money = 0 } -- type = startamount - Add or remove money types for your server (for ex. blackmoney = 0), remember once added it will not be removed from the database!
-QBConfig.Money.DontAllowMinus = { 'cash', 'crypto', 'black_money' } -- Money that is not allowed going in minus
+QBConfig.Money.MoneyTypes = { cash = 500, bank = 5000, crypto = 0, black_money = 0 }
+QBConfig.Money.DontAllowMinus = { 'cash', 'crypto', 'black_money' }
 ```
 
 # 🙈 Youtube
