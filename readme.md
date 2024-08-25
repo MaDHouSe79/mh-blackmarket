@@ -97,7 +97,11 @@ QBCore.Functions.CreateCallback('qb-inventory:server:attemptPurchase', function(
         TriggerEvent('qb-shops:server:UpdateShopItems', shop, itemInfo, amount)
         cb(true)
     else
-        TriggerClientEvent('QBCore:Notify', source, 'You do not have enough money', 'error')
+        if cashType == 'black_money' then
+            TriggerClientEvent('QBCore:Notify', source, 'You do not have enough blackmoney', 'error')
+        else
+            TriggerClientEvent('QBCore:Notify', source, 'You do not have enough money', 'error')
+        end
         cb(false)
     end
 end)
