@@ -47,6 +47,25 @@ QBConfig.Money.MoneyTypes = { cash = 500, bank = 5000, crypto = 0, black_money =
 QBConfig.Money.DontAllowMinus = { 'cash', 'crypto', 'black_money' }
 ```
 
+# How to change marketbills to black_money 
+- The black_money uses the item amount as a number, 
+- and the marketbills uses the item amount as a table.
+- so you need to edit that part of the code.
+
+- From 
+```lua
+local worth = {value=10} -- table
+Player.Functions.AddItem('marketbills', worth) -- to add marketbills
+Player.Functions.RemoveItem('marketbills', worth)-- to remove marketbills
+```
+
+- To
+```lua
+local amount = 10 -- number
+Player.Functions.AddMoney('black_money', amount) -- to add blackmoney
+Player.Functions.RemoveMoney('black_money', amount)  -- to remove blackmoney
+```
+
 # LICENSE
 [GPL LICENSE](./LICENSE)<br />
 &copy; [MaDHouSe79](https://www.youtube.com/@MaDHouSe79)
