@@ -38,6 +38,15 @@
 - in sever.sfg after `ensure [standalone]` add -> `ensure [mh]`
 - After you are done restart the server.
 
+
+# Note for using blackmoney
+- first you need to edit the qb-core/config.lua to this below
+- add black_money to this tables
+```lua
+QBConfig.Money.MoneyTypes = { cash = 500, bank = 5000, crypto = 0, black_money = 0 } -- type = startamount - Add or remove money types for your server (for ex. blackmoney = 0), remember once added it will not be removed from the database!
+QBConfig.Money.DontAllowMinus = { 'cash', 'crypto', 'black_money' } -- Money that is not allowed going in minus
+```
+
 # 🙈 Youtube
 - [Youtube](https://www.youtube.com/c/MaDHouSe79)
 
