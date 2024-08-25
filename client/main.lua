@@ -2,10 +2,7 @@
 --[[            MH Blackmarket Script by MaDHouSe          ]] --
 --[[ ===================================================== ]] --
 local QBCore = exports['qb-core']:GetCoreObject()
-local PlayerData = {}
-local isLoggedIn = false
-local blips = {}
-local peds = {}
+local PlayerData, blips, peds, isLoggedIn = {}, {}, {}, false
 
 local function DeleteBlips()
     if #blips > 0 then
@@ -26,7 +23,7 @@ local function DeletePeds()
     end
 end
 
-local function loadModel(model)
+local function LoadModel(model)
     RequestModel(model)
     while not HasModelLoaded(model) do
         Wait(1)
@@ -34,7 +31,7 @@ local function loadModel(model)
 end
 
 local function SetPedOutfit(ped, outfit)
-    local data = Config.Outfit
+    local data = CL_Config.Outfit
     if outfit ~= nil then data = outfit end
     if data["hair"] ~= nil then SetPedComponentVariation(ped, 2, data["hair"].item, data["hair"].texture, 0) end
     if data["beard"] ~= nil then SetPedComponentVariation(ped, 1, data["beard"].item, data["beard"].texture, 0) end
@@ -53,46 +50,17 @@ local function SetPedOutfit(ped, outfit)
     if data["ear"] ~= nil and data["ear"].item ~= -1 and data["ear"].item ~= 0 then SetPedPropIndex(ped, 2, data["ear"].item, data["ear"].texture, true) end
 end
 
-local function OpenShop()
-    if PlayerData.money['black_money'] < Config.MinAmountBlackMoney then
-        QBCore.Functions.Notify(Lang:t('notify.no_blackmoney'))
-    else
-        local items = {}
-        local slot = 1
-        for _, item in pairs(Config.Items['shop']) do
-            local itemInfo = QBCore.Shared.Items[item.name:lower()]
-            if itemInfo then
-                items[slot] = {
-                    name = itemInfo['name'],
-                    amount = tonumber(item.amount),
-                    info = item.info or {},
-                    label = itemInfo['label'],
-                    description = itemInfo['description'] or '',
-                    weight = itemInfo['weight'],
-                    type = itemInfo['type'],
-                    unique = itemInfo['unique'],
-                    useable = itemInfo['useable'],
-                    price = item.price,
-                    image = itemInfo['image'],
-                    slot = slot,
-                }
-                slot = slot + 1
-            end
-        end         
-        local formattedInventory = {name = 'shop-blackmarket', label = "BlackMarket", maxweight = 5000000, slots = #items, inventory = items}
-        TriggerEvent('qb-inventory:client:openInventory', PlayerData.items, formattedInventory)
-    end
-end
-
 local function CreateShopPed(data)
     local model = "g_m_y_korean_01"
-    if Config.UseCustumPedModel then model = Config.CustumPedModel end
+    if CL_Config.UseCustumPedModel then model = "mp_m_freemode_01" end
     local current = GetHashKey(model)
-    loadModel(current)
-    local ped = CreatePed(0, current, data.coords.x, data.coords.y, data.coords.z - 1, data.heading, false, false)
-    if Config.UseCustumPedModel then SetPedOutfit(ped, Config.Outfit) end
+    LoadModel(current)
+    local ped = CreatePed(0, current, data.shop.coords.x, data.shop.coords.y, data.shop.coords.z - 1, data.shop.coords.w, false, false)
+    peds[#peds + 1] = ped
+    if CL_Config.UseCustumPedModel then SetPedOutfit(ped, CL_Config.Outfit) end
     SetEntityAsMissionEntity(ped, true, true)
-    TaskStartScenarioInPlace(ped, data.scenario, true)
+    SetEntityHeading(ped, data.shop.coords.w)
+    TaskStartScenarioInPlace(ped, "WORLD_HUMAN_STAND_MOBILE", true)
     FreezeEntityPosition(ped, true)
     SetEntityInvincible(ped, true)
     SetPedKeepTask(ped, true)
@@ -102,7 +70,7 @@ local function CreateShopPed(data)
             label = Lang:t('target.talk_to'),
             icon = 'fa-solid fa-stash',
             action = function()
-                OpenShop(data.id)
+                TriggerServerEvent('mh-blackmarket:server:openShop', data)
             end,
             canInteract = function(entity, distance, data)
                 if not isLoggedIn then return false end
@@ -111,36 +79,36 @@ local function CreateShopPed(data)
         }},
         distance = 2.0
     })
-    peds[#peds + 1] = ped
 end
 
-local function Init()
-    DeletePeds()
-    DeleteBlips()
-    for k, v in pairs(Config.Shops) do
-        if v.enable then
-            if v.showBlip then
-                local blip = AddBlipForCoord(v.coords)
-                SetBlipSprite(blip, v.blip.sprite)
-                SetBlipDisplay(blip, 4)
-                SetBlipScale(blip, 0.7)
-                SetBlipAsShortRange(blip, true)
-                SetBlipColour(blip, v.blip.color)
-                BeginTextCommandSetBlipName("STRING")
-                AddTextComponentSubstringPlayerName(v.label)
-                EndTextCommandSetBlipName(blip)
-                blips[#blips + 1] = blip
+local function Init(config)
+    if not isLoggedIn then
+        isLoggedIn = true
+        DeletePeds()
+        DeleteBlips()
+        for id, shop in pairs(config) do
+            if shop.enable then
+                if shop.blip.show then
+                    local blip = AddBlipForCoord(v.coords)
+                    SetBlipSprite(blip, shop.blip.sprite)
+                    SetBlipDisplay(blip, 4)
+                    SetBlipScale(blip, 0.7)
+                    SetBlipAsShortRange(blip, true)
+                    SetBlipColour(blip, v.blip.color)
+                    BeginTextCommandSetBlipName("STRING")
+                    AddTextComponentSubstringPlayerName(shop.label)
+                    EndTextCommandSetBlipName(blip)
+                    blips[#blips + 1] = blip
+                end
+                CreateShopPed({id = id, shop = shop})
             end
-            local data = {id = k, ped = v.ped, coords = v.coords, heading = v.heading, scenario = v.scenario}
-            CreateShopPed(data)
         end
     end
 end
 
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     PlayerData = QBCore.Functions.GetPlayerData()
-    isLoggedIn = true
-    Init()
+    TriggerServerEvent('mh-blackmarket:server:onjoin')
 end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
@@ -162,7 +130,10 @@ end)
 AddEventHandler('onResourceStart', function(resourceName)
     if resourceName == GetCurrentResourceName() then
         PlayerData = QBCore.Functions.GetPlayerData()
-        isLoggedIn = true
-        Init()
+        TriggerServerEvent('mh-blackmarket:server:onjoin')
     end
+end)
+
+RegisterNetEvent('mh-blackmarket:client:sendConfig', function(config)
+    Init(config)
 end)
