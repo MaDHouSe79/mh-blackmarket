@@ -61,8 +61,8 @@ Player.Functions.RemoveItem('marketbills', worth) -- to remove marketbills
 - To
 ```lua
 local amount = 10 -- number
-Player.Functions.AddMoney('black_money', amount)    -- to add blackmoney
-Player.Functions.RemoveMoney('black_money', amount) -- to remove blackmoney
+Player.Functions.AddMoney('black_money', amount, nil)    -- to add blackmoney
+Player.Functions.RemoveMoney('black_money', amount, nil) -- to remove blackmoney
 ```
 
 # LICENSE
