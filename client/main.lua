@@ -89,7 +89,7 @@ local function Init(config)
         for id, shop in pairs(config) do
             if shop.enable then
                 if shop.blip.show then
-                    local blip = AddBlipForCoord(v.coords)
+                    local blip = AddBlipForCoord(shop.coords)
                     SetBlipSprite(blip, shop.blip.sprite)
                     SetBlipDisplay(blip, 4)
                     SetBlipScale(blip, 0.7)
