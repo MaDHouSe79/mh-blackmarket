@@ -135,5 +135,6 @@ AddEventHandler('onResourceStart', function(resourceName)
 end)
 
 RegisterNetEvent('mh-blackmarket:client:sendConfig', function(config)
+    if CL_Config.IgnoreJobs[PlayerData.job.name] then return end
     Init(config)
 end)
