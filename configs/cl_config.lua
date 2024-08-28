@@ -3,6 +3,11 @@
 --[[ ===================================================== ]] --
 CL_Config = {}
 
+CL_Config.IgnoreJobs ={
+    ['police'] = true,
+    -- you can add more jobs here
+}
+
 CL_Config.UseCustumPedModel = true
 CL_Config.Outfit = {
     ['hair'] = { item = 19, texture = 4 },    -- Hear
