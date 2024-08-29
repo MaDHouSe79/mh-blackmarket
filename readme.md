@@ -86,7 +86,7 @@ QBCore.Functions.CreateCallback('qb-inventory:server:attemptPurchase', function(
 
     local cashType = 'cash'
     local purchase = 'shop-purchase'
-    if data.shop:find('blackShop-') then 
+    if data.shop:find('blackmarket-') then 
         cashType = 'black_money'
         purchase = 'blackmarket-purchase'
     end
