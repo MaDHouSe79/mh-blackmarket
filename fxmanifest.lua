@@ -6,7 +6,7 @@ game 'gta5'
 
 author 'MaDHouSe'
 description 'mh-blackmarket'
-version '1.0'
+version '1.0.0'
 
 shared_scripts {'@qb-core/shared/locale.lua', 'locales/en.lua'}
 client_scripts {'configs/cl_config.lua', 'client/main.lua'}
