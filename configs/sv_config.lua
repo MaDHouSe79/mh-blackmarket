@@ -3,6 +3,8 @@
 --[[ ===================================================== ]] --
 SV_Config = {}
 
+SV_Config.UseOldInventory = false
+
 SV_Config.Items = {
     ['shop1'] = {
         {name = "weapon_knife",        price = 500,   amount = 1},
